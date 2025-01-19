@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicompare - Your Medicine Companion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/public/styles.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <form action="/search" method="GET">
+            <div class="search-bar">
+                <input type="search" id="searchMedicine" name="term" placeholder="Search for Medicine...">
+                <input type="submit" value="Search" id="searchButton">
+            </div>
+        </form>
+    </section>
+
+    <% meds.map((med)=> { %>
+        <% console.log(med); %>
+            <section class="product-viewing" id="products">
+                <a href=<%=med.mdk.path %>>
+                    <div class="product-card">
+                        <div style="width: 8rem; margin: 0; padding: 0%;"><img src=<%=med.phe.image %>></div>
+                        <div class="text">
+                            <h4>
+                                <%= med.phe.name %>
+                            </h4>
+                            <p>
+                                <%= med.phe.manifacturer %>
+                            </p>
+                            <p class="price">
+                                <%= med.mdk.price %> <span style="text-decoration: line-through; color: #ff8080; font-size: .8rem;">
+                                        <%= med.mdk.discount %>
+                                    </span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </section>
+            <% }) %>
+
+                <!-- Footer -->
+                <footer>
+                    <p>&copy; 2024 Medicompare. All Rights Reserved.</p>
+                </footer>
+
+</body>
+
+</html>
