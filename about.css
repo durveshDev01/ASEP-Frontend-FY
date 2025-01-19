@@ -1,8 +1,0 @@
-#links{
-    display: flex; /* Makes list items inline */
-    justify-content: space-between; /* Adds equal spacing */
-    padding: 0;
-    margin: 0;
-    list-style: none; /* Removes bullets */
-    ;
-}
