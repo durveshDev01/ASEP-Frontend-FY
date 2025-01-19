@@ -186,8 +186,8 @@ nav ul li a:hover {
 }
 
 .product-card img {
-    width: 8rem;
-    height: auto;
+    max-width: 8rem;
+    max-height: 8rem;
     object-fit: cover;
     border-radius: 10px;
 }
