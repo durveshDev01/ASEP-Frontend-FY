@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In & Sign Up</title>
+    
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Left Section -->
+        <div class="left-section">
+            <!-- Logo -->
+            <div class="logo">
+                <img src="logo1.jpg" alt="Logo" style="max-width: 200px; margin-bottom: 20px;">
+            </div>
+            <h1>Welcome!<br>To Our Website</h1>
+            <p>Your Medicine Partner is Here <br>Your Health Our Responsibility</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+
+        <!-- Right Section -->
+        <div class="right-section">
+            <!-- Sign In Form -->
+            <div id="signInForm" class="form-container active">
+                <h2 class="form-header">Sign In</h2>
+                <form id="signInFormSubmit">
+                    <div class="form-group">
+                        <input type="text" id="usernameOrEmail" placeholder="Username, Email or Mobile Number" required>
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="password" placeholder="Password" required>
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="actions">
+                        <label>
+                            <input type="checkbox"> Remember Me
+                        </label>
+                        <a href="#">Forget Password</a>
+                    </div>
+                    <button type="submit">Login In</button>
+                </form>
+                <div class="switch-link">
+                    <p>Don't have an account? <a id="showSignUp">Sign Up</a></p>
+                </div>
+            </div>
+
+            <!-- Sign Up Form -->
+            <div id="signUpForm" class="form-container">
+                <h2 class="form-header">Sign Up</h2>
+                <form id="signUpFormSubmit">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="Name" required>
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Email" required>
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="mobile" placeholder="Mobile Number" required>
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="signupPassword" placeholder="Password" required>
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <button type="submit">Register</button>
+                </form>
+                <div class="switch-link">
+                    <p>Already have an account? <a id="showSignIn">Sign In</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>
