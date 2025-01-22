@@ -90,6 +90,10 @@ nav ul li a:hover {
     background-color: rgba(255, 255, 255, 0.7);
     border-radius: 50px;
 }
+a {
+    text-decoration: none;
+    color: black;
+}
 
 .search-bar input {
     width: 80%;
@@ -176,14 +180,23 @@ nav ul li a:hover {
     background-color: #fff;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
     border-radius: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+p {
+    white-space: wrap;
+}
+
+.alternatives {
+    margin-left: 20px;
+}
 
 .product-card img {
-    width: 8rem;
-    height: 6rem;
+    width: 12rem;
+    height: 10rem;
     object-fit: cover;
     border-radius: 10px;
 }

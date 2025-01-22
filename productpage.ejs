@@ -1,68 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medicompare - Your Medicine Companion</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@400;500&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="/static/public/spstyles.css">
 </head>
+
 <body>
 
     <!-- Navbar -->
     <nav>
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#products">Products</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="/">Home</a></li>
         </ul>
     </nav>
 
     <section class="product-viewing" id="products">
         <div class="product-card">
-            <img src="Medicine 3.jpg" alt="Medicine"><br>
+            <img src="<%= med.mdk.image %>" alt="Medicine"><br>
             <div>
                 <div>
-                    <h4> <%= meds.mdk.name %> </h4>
+                    <h4>
+                        <%= med.mdk.name %>
+                    </h4>
                     <table>
-                        <% meds.map((med) => { %>
                         <tr>
-                            <th>Medkart Price</th>
-                            <td>19/-</td>
-                            <td><a href="">Link</a></td>
+                            <th>Medkart</th>
+                            <td>
+                                <%= med.mdk.name %>
+                            </td>
+                            <td><a href=<%="https://www.medkart.in/" +med.mdk.path %>>Visit</a></td>
+                            <td>
+                                <%= med.mdk.price %>
+                            </td>
                         </tr>
                         <tr>
-                            <th>Pharmeasy Price</th>
-                            <td>22/-</td>
-                            <td><a href="">Link</a></td>
+                            <th>Pharmeasy</th>
+                            <td>
+                                <%= med.phe.name %>
+                            </td>
+                            <td><a href=<%="https://pharmeasy.in/" +med.phe.path %>>Visit</a></td>
+                            <td>
+                                <%= med.phe.price %>
+                            </td>
                         </tr>
-                        <% }) %>
                     </table>
                 </div>
                 <table id="t2">
-                    <tr>
-                        <th>Description</th>
-                        <td>jklfffffv nlkJZCVbLKJCnb b.OFHnKJVNVh:Hvnpg;hvnv:FHvnLHCnVBKVN:PVnKVMbnGIV BN:BN:Gvhgiuhvvn;hvknohfvkvbJjgoahnv</td>
-                    </tr>
-                    <tr>
-                        <th>Symptoms</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>Side-effects</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>Availibility</th>
-                        <td></td>
-                    </tr>
+                    <% mdk.map((detail)=> { %>
+                        <% for(key in detail) { %>
+                            <tr>
+                                <th>
+                                    <%= key %>
+                                </th>
+                                <td>
+                                    <%= detail[key] %>
+                                </td>
+                            </tr>
+                            <% } %>
+                                <% }) %>
+                                    <tr>
+                                        <td colspan="2" style="background-color: #2ecc71;"><a
+                                                href=<%="https://medkart.in/" +med.mdk.path %>>Visit Medkart</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color: gray; height: 2px;" colspan="2"></td>
+                                    </tr>
+
+                                    <% phe.details.map((detail)=> { %>
+                                        <% for(key in detail) { %>
+                                            <tr>
+                                                <th>
+                                                    <%= key %>
+                                                </th>
+                                                <td>
+                                                    <%= detail[key] %>
+                                                </td>
+                                            </tr>
+                                            <% }}) %>
+                                                <tr>
+                                                    <td colspan="2" style="background-color: #2ecc71;"><a
+                                                            href=<%="https://pharmeasy.in/" +med.phe.path %>>Visit
+                                                            Pharmeasy</a></td>
+                                                </tr>
+
                 </table>
-                    
+
+                <h3>Alternatives</h3>
+                <ul class="alternatives">
+                    <% phe.alternate.map((alt)=> { %>
+                        <li><a href=<%=alt.link %> style="color: #25b260;"><%= alt.name %></a></li>
+                        <% }) %>
+                </ul>
+
+                <h3>Disclaimer</h3>
+                <p>
+                    <%= phe.disclaimer %>
+                </p>
+
             </div>
         </div>
-        
+
     </section>
 
     <!-- Footer -->
@@ -71,4 +113,5 @@
     </footer>
 
 </body>
+
 </html>
