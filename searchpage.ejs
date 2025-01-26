@@ -39,14 +39,14 @@
                         <div style="width: 8rem; margin: 0; padding: 0%;"><img src=<%= _mdk? "" : med.mdk.image %>></div>
                         <div class="text">
                             <h4>
-                                <%= _mdk? med.phe.name : med.mdk.name %>
+                                <%= _mdk? "" : med.mdk.name %>
                             </h4>
                             <p>
-                                <%=_mdk? med.phe.manifacturer : med.mdk.manifacturer %>
+                                <%=_mdk? "" : med.mdk.manifacturer %>
                             </p>
                             <p class="price">
-                                <%= _mdk? med.phe.price : med.mdk.price %> <span style="text-decoration: line-through; color: #ff8080; font-size: .8rem;">
-                                        <%= _mdk? med.phe.discount : med.mdk.discount %>
+                                <%= _mdk? "" : med.mdk.price %> <span style="text-decoration: line-through; color: #ff8080; font-size: .8rem;">
+                                        <%= _mdk? "" : med.mdk.discount %>
                                     </span>
                             </p>
                         </button>
