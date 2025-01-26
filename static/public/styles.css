@@ -133,6 +133,27 @@ nav ul li a:hover {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.profile {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 4px;
+    top: 12px;
+    right: 36px;
+}
+.account-popup {
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    background-color: #4adbff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    animation: slideInFromTop 0.3s ease;
+
+}
+
 .features .feature-item:hover {
     transform: translateY(-10px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
