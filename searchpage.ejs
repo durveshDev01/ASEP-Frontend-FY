@@ -36,7 +36,7 @@
                   <!-- Hidden input to hold the JSON data -->
                   <input type="hidden" name="medData" value='<%= JSON.stringify(med) %>' />
                   <button type="submit" class="product-card" style="all: unset; cursor: pointer; display: flex; text-align: left;">
-                        <div style="width: 8rem; margin: 0; padding: 0%;"><img src=<%= _mdk? med.phe.image : med.mdk.image %>></div>
+                        <div style="width: 8rem; margin: 0; padding: 0%;"><img src=<%= _mdk? "" : med.mdk.image %>></div>
                         <div class="text">
                             <h4>
                                 <%= _mdk? med.phe.name : med.mdk.name %>
