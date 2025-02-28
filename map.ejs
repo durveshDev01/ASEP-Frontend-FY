@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map - Medicompare</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #333;
+            background-color: #f8f8f8;
+            line-height: 1.6;
+            margin: 0px;
+            min-width: 100%;
+        }
+
+        /* Navbar */
+        nav {
+            background-color: #2ecc71;
+            padding: 5px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #3498db;
+        }
+
+        .profile {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            margin-right: 4px;
+            top: 12px;
+            right: 6px;
+            cursor: pointer;
+        }
+
+        .account-popup {
+            position: absolute;
+            top: 50px;
+            right: 20px;
+            background-color: #4adbff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            animation: slideInFromTop 0.3s ease;
+            display: none;
+        }
+
+        .account-popup.show {
+            display: block;
+        }
+
+        /* Map Container */
+        .map-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        iframe {
+            max-width: 100%;
+            min-height: 100%;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2ecc71;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            font-size: 1em;
+            margin: 0;
+        }
+
+        footer a {
+            color: #0dcaf0;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes slideInFromTop {
+            0% {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="/features">Features</a></li>
+            <li><a href="/reminder">My Reminders</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/map">Map</a></li>
+        </ul>
+        <div class="profile" onclick="toggleAccountPopup()">
+            <img src="http://www.pngall.com/wp-content/uploads/5/Profile-PNG-Clipart.png" width="50px" height="50px" alt="profile">
+        </div>
+        <div class="account-popup" id="accountPopup">
+            <div class="account-actions">
+                <%= user != undefined ? user.name : '' %><br>
+                <%= user != undefined ? user.email : 'Login to view Username' %>
+                <hr />
+                <% if (user == undefined) { %>
+                <a href="/auth">Login</a>
+                <% } else { %>
+                <a href="/logout">Logout</a>
+                <% } %>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Map Section -->
+    <div class="map-container">
+        <iframe 
+            src="https://www.google.com/maps/d/u/1/embed?mid=1fk2OushZ6gWT_YxmM4FVouG_JB5MURA&ehbc=2E312F"
+            style="width: 100%; height: 450px; border: 0; border-radius: 8px;"
+            allowfullscreen=""
+            loading="lazy">
+        </iframe>
+    </div>
+    
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Medicompare. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function toggleAccountPopup() {
+            const popup = document.getElementById('accountPopup');
+            popup.classList.toggle('show');
+        }
+    </script>
+</body>
+</html>

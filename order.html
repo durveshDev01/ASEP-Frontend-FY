@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Your Medicine</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header .header-container h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+        }
+
+        .order-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            margin-top: 20px;
+            flex-grow: 1;
+            flex-wrap: wrap; /* Ensure responsiveness */
+        }
+
+        .order-form {
+            width: 60%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-form h2 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        textarea {
+            height: 80px;
+        }
+
+        .payment-method {
+            margin-top: 20px;
+        }
+
+        .payment-method h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .payment-option input {
+            width: auto;
+        }
+
+        .payment-options img {
+            width: 50px;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Order Summary */
+        .order-summary {
+            width: 35%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-summary h2 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .summary-item {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            position: relative;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .order-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .order-form, .order-summary {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>Order Your Medicine</h1>
+            <p>Get your medicines delivered quickly and safely.</p>
+        </div>
+    </header>
+
+    <main class="order-container">
+        <section class="order-form">
+            <h2>Place Your Order</h2>
+            <form action="order_process.php" method="POST" id="orderForm">
+                <div class="form-group">
+                    <label for="medicine">Select Medicine:</label>
+                    <select id="medicine" name="medicine" required onchange="updateSummary()">
+                        <option value="medicine1" data-price="10">Medicine 1 - $10</option>
+                        <option value="medicine2" data-price="15">Medicine 2 - $15</option>
+                        <option value="medicine3" data-price="20">Medicine 3 - $20</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" name="quantity" min="1" value="1" required onchange="updateSummary()">
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Delivery Address:</label>
+                    <textarea id="address" name="address" placeholder="Enter your address" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                </div>
+
+                <div class="payment-method">
+                    <h3>Select Payment Method</h3>
+                    <div class="payment-options">
+                        <div class="payment-option">
+                            <input type="radio" name="payment" value="paypal" id="paypal" checked>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/PayPal_logo_2014.svg" alt="PayPal">
+                            <label for="paypal">PayPal</label>
+                        </div>
+
+                        <div class="payment-option">
+                            <input type="radio" name="payment" value="phonepe" id="phonepe">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/PhonePe_logo.svg/1024px-PhonePe_logo.svg.png" alt="PhonePe">
+                            <label for="phonepe">PhonePe</label>
+                        </div>
+
+                        <div class="payment-option">
+                            <input type="radio" name="payment" value="googlepay" id="googlepay">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Google_Pay_logo.svg/1280px-Google_Pay_logo.svg.png" alt="Google Pay">
+                            <label for="googlepay">Google Pay</label>
+                        </div>
+
+                        <div class="payment-option">
+                            <input type="radio" name="payment" value="paytm" id="paytm">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Paytm_logo.svg" alt="Paytm">
+                            <label for="paytm">Paytm</label>
+                        </div>
+
+                        <div class="payment-option">
+                            <input type="radio" name="payment" value="cod" id="cod">
+                            <label for="cod">Cash on Delivery (COD)</label>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Place Order</button>
+            </form>
+        </section>
+
+        <section class="order-summary">
+            <h2>Order Summary</h2>
+            <div class="summary-item">
+                <p>Selected Medicine: <span id="medicine-summary">Medicine 1</span></p>
+                <p>Quantity: <span id="quantity-summary">1</span></p>
+                <p>Total Price: $<span id="total-price">10</span></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Your Medicine Shop. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Function to update the order summary based on the selected product and quantity
+        function updateSummary() {
+            const medicineSelect = document.getElementById('medicine');
+            const quantityInput = document.getElementById('quantity');
+            const medicineSummary = document.getElementById('medicine-summary');
+            const quantitySummary = document.getElementById('quantity-summary');
+            const totalPriceElement = document.getElementById('total-price');
+            
+            const selectedMedicine = medicineSelect.options[medicineSelect.selectedIndex];
+            const pricePerUnit = selectedMedicine.getAttribute('data-price');
+            const quantity = quantityInput.value;
+
+            // Update the order summary
+            medicineSummary.textContent = selectedMedicine.text;
+            quantitySummary.textContent = quantity;
+            totalPriceElement.textContent = (pricePerUnit * quantity).toFixed(2);
+        }
+
+        // Initial summary update
+        updateSummary();
+    </script>
+</body>
+</html>

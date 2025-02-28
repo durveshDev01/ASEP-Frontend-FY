@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - Medicine Price Comparison</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f4faff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+    
+        nav {
+            background-color: #2ecc71;
+            padding: 6.1px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+    
+        nav ul li {
+            display: inline;
+            margin-right: 30px;
+        }
+    
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            font-family: 'Open Sans', sans-serif; /* Changed font to Open Sans */
+        }
+    
+        nav ul li a:hover {
+            color: #3498db;
+        }
+    
+        .profile {
+            position: absolute;
+            width: 50px; 
+            height: 50px;
+            display: inline-block;
+            margin-right: 1px;
+            top: 12px;
+            right: 6px;
+            cursor: pointer;
+        }
+    
+        .account-popup {
+            position: absolute;
+            top: 50px;
+            right: 20px;
+            background-color: #4adbff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            animation: slideInFromTop 0.3s ease;
+            display: none;
+        }
+    
+        .account-popup.show {
+            display: block;
+        }
+    
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background-image: linear-gradient(to right, #28a745, #0dcaf0);
+            color: white;
+        }
+    
+        .hero h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+    
+        .hero p {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+    
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+    
+        .feature {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            padding: 20px;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            border: 1px solid #e0e0e0;
+        }
+    
+        .feature i {
+            font-size: 1.5em;
+            color: #28a745;
+            margin-right: 15px;
+        }
+    
+        .feature:hover {
+            background-color: #e6f7ee;
+        }
+    
+        .feature-content {
+            display: none;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 10px;
+        }
+    
+        .feature.open .feature-content {
+            display: block;
+        }
+    
+        footer {
+            background-color: #2ecc71;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+        }
+    
+        footer p {
+            font-size: 1em;
+            margin: 0;
+        }
+    
+        footer a {
+            color: #0dcaf0;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    
+        footer a:hover {
+            text-decoration: underline;
+        }
+    
+        /* Animations */
+        @keyframes slideInFromTop {
+            0% {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="/features">Features</a></li>
+            <li><a href="/reminder">My Reminders</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/map">Map</a></li>
+        </ul>
+        <div class="profile" onclick="toggleAccountPopup()">
+            <img src="http://www.pngall.com/wp-content/uploads/5/Profile-PNG-Clipart.png" width="50px" height="50px" alt="profile">
+        </div>
+        <div class="account-popup" id="accountPopup">
+            <div class="account-actions">
+                <%= user != undefined ? user.name : '' %><br>
+                <%= user != undefined ? user.email : 'Login to view Username' %>
+                <hr />
+                <% if (user == undefined) { %>
+                <a href="/auth">Login</a>
+                <% } else { %>
+                <a href="/logout">Logout</a>
+                <% } %>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1> MediCompare</h1>
+        <p>Compare medicine prices and find the best deals around you.</p>
+    </div>
+
+    <div class="container">
+        <div class="feature">
+            <i class="fas fa-prescription-bottle-alt"></i>
+            Local Pharmacy Listings
+            <div class="feature-content">
+                Compare prices from pharmacies around your district to get the best deals.
+            </div>
+        </div>
+
+        <div class="feature">
+            <i class="fas fa-clock"></i>
+            Real-Time Price Updates
+            <div class="feature-content">
+                Stay updated with the latest prices and discounts on medicines.
+            </div>
+        </div>
+
+        <div class="feature">
+            <i class="fas fa-pills"></i>
+            Medicine Availability
+            <div class="feature-content">
+                Check if a specific medicine is in stock before visiting a pharmacy.
+            </div>
+        </div>
+
+        <div class="feature">
+            <i class="fas fa-search"></i>
+            Search & Filter Options
+            <div class="feature-content">
+                Easily search by medicine name, brand, or category.
+            </div>
+        </div>
+
+        <div class="feature">
+            <i class="fas fa-map-marker-alt"></i>
+            Pharmacy Location & Contact Details
+            <div class="feature-content">
+                Find nearby pharmacies and their contact details for easy access.
+            </div>
+        </div>
+
+        <div class="feature">
+            <i class="fas fa-bell"></i>
+            Reminders & Notifications
+            <div class="feature-content">
+                Set reminders to get notified about your prescriptions any day, any time.
+            </div>
+        </div>
+
+        <div class="feature">
+            <i class="fas fa-star"></i>
+            Buy Medicine
+            <div class="feature-content">
+                Make an affordable choice, and buy from your chosen store.
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Medicompare. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function toggleAccountPopup() {
+            const popup = document.getElementById('accountPopup');
+            popup.classList.toggle('show');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const features = document.querySelectorAll('.feature');
+            features.forEach(feature => {
+                feature.addEventListener('click', function() {
+                    this.classList.toggle('open');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
